@@ -1,152 +1,359 @@
-# Bayan — Bilingual Applied NLP Project
+# Bayan NLP Project
 
-**Learner ID / GitHub username:** FILL_ME  
-**GitHub:** FILL_ME  
-**Final release:** FILL_ME
+**Name:** Anas Ibrahim Al-Mutairi  
+**Program:** Applied Natural Language Processing  
+**Program Code:** SDA-AIE-211  
+**Project Name:** Bayan  
+**Trainer:** Meaad Al-Marri  
+**Training Provider:** SDAIA Academy  
+**Tag:** #SDAIAAcademy
 
-## Executive summary | الملخص
+https://github.com/SDAIAAcademy
 
-FILL_ME: فقرة قصيرة تشرح المشكلة والمستخدم والنتيجة والحدود. اذكر صراحة أن البيانات تعليمية اصطناعية/عامة وليست بيانات مستفيدين حقيقية.
+## Project Overview
 
-## What Bayan does | ماذا يفعل بيان؟
+**Bayan** is an applied Natural Language Processing project that brings together the full practical workflow covered in the training program: text preparation, tokenisation, Transformer attention, text classification, Named Entity Recognition (NER), Extractive Question Answering (QA), bilingual semantic search, evaluation/error analysis, and inference optimisation/serving.
 
-1. FILL_ME: privacy/preprocessing.
-2. FILL_ME: topic and sentiment classification.
-3. FILL_ME: NER.
-4. FILL_ME: extractive QA/no-answer.
-5. FILL_ME: bilingual semantic search.
-6. FILL_ME: evaluation and serving.
+The repository is centered around one complete Google Colab notebook containing the practical implementation and recorded outputs:
 
-## Scope and non-goals | النطاق وما لا يدعيه المشروع
+`notebooks/bayan_NLP_ANAS_AI_Mutairi.ipynb`
 
-- In scope: FILL_ME
-- Out of scope: FILL_ME
-- Not for: production/government decisions without further validation — FILL_ME
+> **Important:** The results reported below are the actual values recorded in the submitted notebook. Several course experiments are explicitly labelled as measured smoke tests / course fixtures and should not be interpreted as production-scale benchmarks.
 
-## Reproduce on Google Colab Free
+## Problem, Scope, Architecture and Limitations
 
-| # | Notebook | Colab | Purpose |
-|---:|---|---|---|
-| 00 | runtime doctor | FILL_ME | environment |
-| 01 | text processing/tokenisation | FILL_ME | Gate A |
-| 02 | attention/transformers | FILL_ME | LO2 |
-| 03 | classification | FILL_ME | Gate B |
-| 04 | NER and QA | FILL_ME | Gate B |
-| 05 | Arabic NLP | FILL_ME | Gate C |
-| 06 | semantic search | FILL_ME | Gate C |
-| 07 | evaluation/error analysis | FILL_ME | Gate C |
-| 08 | optimisation/serving | FILL_ME | Gate D |
+**Problem.** The project demonstrates an end-to-end applied NLP workflow for Arabic and bilingual text, covering preprocessing, tokenisation, Transformer-based modelling, classification, NER, extractive QA, semantic search, evaluation, and inference optimisation.
 
-Clean-run instructions:
+**Scope.** The work is limited to the course datasets, measured notebook experiments, and supporting reports included in this repository. It is an educational project rather than a production deployment.
 
-1. Open notebook 00 and choose **Save a copy in Drive**.
-2. Run in numeric order using Colab Free.
-3. Use **Runtime → Restart session and run all** before final evidence.
-4. Do not place tokens, PII, model weights, or private Drive links in the repository.
+**Architecture.** The workflow is organised as: text preparation → tokenisation/embeddings → Transformer modelling → task-specific classification/NER/QA → bilingual semantic search with FAISS and re-ranking → evaluation/error analysis → optimisation and service validation.
 
-## Architecture
+**Limitations.** Dataset sizes are small, several reported measurements are course smoke tests, model behaviour has not been validated for production use, and benchmark results depend on the runtime environment.
 
-```mermaid
-flowchart LR
-    A["AR/EN feedback"] --> B["Privacy + preprocessing"]
-    B --> C["Classification / NER / QA"]
-    B --> D["Embeddings + FAISS"]
-    C --> E["Versioned response"]
-    D --> E
-    E --> F["Evaluation + tested API"]
+## Runnable Evidence Links
+
+- [Main project notebook](notebooks/bayan_NLP_ANAS_AI_Mutairi.ipynb)
+- [Evaluation report](reports/EVALUATION_REPORT.md)
+- [Benchmark report](BENCHMARKS.md)
+- [Technical decisions](DECISIONS.md)
+- [Project summary](PROJECT_SUMMARY.json)
+- [Preflight report](reports/preflight.json)
+
+## Results Snapshot
+
+| Area | Result |
+|---|---:|
+| Classification test Macro-F1 | 0.8667 |
+| NER F1 | 0.5714 |
+| Semantic Search Recall@3 | 1.0000 |
+| Re-ranking MRR@3 improvement | +0.0556 |
+| INT8 prediction agreement | 1.0000 |
+| INT8 p95 latency | 7.922 ms |
+
+## Technical Coverage
+
+### T1 — Text Preparation and Arabic Handling
+Implemented and validated:
+- Unicode inspection
+- Raw-text preservation
+- PII masking for email and Saudi mobile examples
+- spaCy sentence segmentation
+- WordPiece tokenisation
+- Token fertility and truncation checks
+- Padding, attention masks, and embeddings
+- Arabic/multilingual tooling, including `camel-tools==1.6.0`
+
+Validation:
+- `DAY1_NOTEBOOK1_CORE=PASS`
+- `unicode: PASS`
+- `spacy_sentence_pipeline: PASS`
+- `raw_copy_preserved: PASS`
+- `pii_masked: PASS`
+- `token_metrics: PASS`
+- `embedding_shape: PASS`
+
+### T2 — Attention and Transformer Architecture
+Implemented and validated:
+- Scaled Dot-Product Attention
+- Q/K/V shape checks
+- Causal masking
+- Multi-head split/combine journey
+- NumPy ↔ PyTorch parity
+- Actual Transformer forward pass and attention inspection
+- Two-checkpoint parameter audit
+
+Validation:
+- `Scaled attention=PASS`
+- `Mask semantics=PASS`
+- `Multi-head shape journey=PASS`
+- `NumPy/PyTorch parity=PASS`
+- `ACTUAL_TRANSFORMER_FORWARD=PASS`
+- `DAY1_NOTEBOOK2_CORE=PASS`
+
+Actual Transformer example:
+- Parameters: **134,734,080**
+- Hidden-state shape: **(2, 10, 768)**
+
+### T3 — Classification, NER and QA
+
+#### Text Classification
+Measured results:
+- Baseline validation Macro-F1: **0.6667**
+- Transformer validation Macro-F1: **1.0000**
+- Baseline test Macro-F1: **0.7333**
+- Transformer test Macro-F1: **0.8667**
+- Transformer test accuracy: **0.875**
+- Selected epoch: **9**
+- Transformer optimizer steps: **72**
+
+Validation:
+- `DAY2_NOTEBOOK3_CORE=PASS`
+
+#### Named Entity Recognition (NER)
+Training loss decreased from **2.2637** to **0.0427** across 12 epochs.
+
+Measured NER metrics:
+- Recall: **0.5000**
+- F1: **0.5714**
+
+Validation:
+- `NER alignment contract=PASS`
+- `Strict entity-boundary test=PASS`
+- `NER optimizer steps=PASS`
+
+#### Extractive QA
+Measured QA loss:
+- **3.6451**
+
+Validated:
+- offset-to-token alignment
+- valid span extraction
+- honest no-answer handling
+
+Validation:
+- `QA offsets-to-token positions=PASS`
+- `QA optimizer steps=PASS`
+- `QA post-processing tests=PASS`
+- `DAY2_NOTEBOOK4_CORE=PASS`
+
+### T4 — Bilingual Semantic Search
+Implemented:
+- Multilingual sentence embeddings
+- L2 normalisation
+- FAISS index
+- Validation-only threshold selection
+- Cross-lingual retrieval
+- Re-ranking experiment
+
+Measured retrieval results:
+- Recall@3: **1.0000**
+- MRR@3 before re-ranking: **0.6667**
+- MRR@3 after re-ranking: **0.7222**
+- MRR@3 delta: **+0.0556**
+- Validation-only threshold: **0.4592**
+- Validation accuracy at selected threshold: **1.0000**
+- Frozen-threshold no-answer test accuracy: **1.0000**
+
+Decision:
+- **ADOPT_FOR_EXPERIMENT** for re-ranking
+
+Validation:
+- `DAY3_NOTEBOOK6_CORE=PASS`
+
+### T5 Results
+
+- Behavioural tests passed: **3 / 6**
+- Behavioural pass rate: **0.5000**
+- Slice-based evaluation: **Completed**
+- Confidence-interval analysis: **Completed**
+- Paired comparison: **Completed**
+- Small-slice analysis: **Completed**
+- Manual error taxonomy: **Completed**
+- Three prioritised fixes: **Documented**
+- Traceable evaluation report: **Generated**
+- Final validation: `DAY3_NOTEBOOK7_CORE=PASS`
+
+Course-fixture behavioural tests:
+- Passed: **3 / 6**
+- Pass rate: **0.5000**
+
+Generated evaluation artifacts include:
+- `day3_error_taxonomy.csv`
+- `day3_evaluation_fixture.json`
+- `day3_slice_report.csv`
+
+Validation:
+- `DAY3_NOTEBOOK7_CORE=PASS`
+
+### T6 — Inference Optimisation and Tested Service
+Implemented:
+- PyTorch reference benchmark
+- ONNX export and checker
+- ONNX numerical parity
+- dynamic INT8 quantisation attempt
+- latency and quality budgets
+- FastAPI contract tests
+- Arabic/English service canaries
+- invalid-input rejection
+
+Measured optimisation results:
+- PyTorch parameter size: **16.732 MiB**
+- ONNX FP32 size: **16.788 MiB**
+- INT8 size: **4.287 MiB**
+- ONNX FP32 prediction agreement: **1.0000**
+- ONNX max absolute logits difference: **1.639e-07**
+- INT8 prediction agreement: **1.0000**
+- ONNX FP32 model-only p95 latency: **9.541 ms**
+- INT8 model-only p95 latency: **7.922 ms**
+
+Selected service candidate:
+- **onnx-dynamic-int8**
+- Decision recorded by the notebook: **ADOPT_INT8**
+- Scope note: **SYSTEMS_SMOKE_NOT_A_SHIP_DECISION**
+
+FastAPI tests:
+- health: **200**
+- Arabic request: **200**
+- English request: **200**
+- empty input rejected: **422**
+- unsupported language rejected: **422**
+- Arabic canary: **PASS**
+- English canary: **PASS**
+
+Validation:
+- `DAY4_NOTEBOOK8_CORE=PASS`
+
+### T7 — Measured Extension
+A measured re-ranking extension was evaluated on the semantic-search pipeline:
+- MRR@3 before: **0.6667**
+- MRR@3 after: **0.7222**
+- Improvement: **+0.0556**
+- Decision: **ADOPT_FOR_EXPERIMENT**
+
+This provides an explicit measured benefit/cost decision rather than an unmeasured feature addition.
+
+---
+
+## Core Notebook Validation Summary
+
+```text
+DAY1_NOTEBOOK1_CORE=PASS
+DAY1_NOTEBOOK2_CORE=PASS
+DAY2_NOTEBOOK3_CORE=PASS
+DAY2_NOTEBOOK4_CORE=PASS
+DAY3_NOTEBOOK6_CORE=PASS
+DAY3_NOTEBOOK7_CORE=PASS
+DAY4_NOTEBOOK8_CORE=PASS
 ```
 
-## Results | النتائج
+---
 
-كل رقم يحمل `MEASURED`, `MEASURED_SMOKE`, `SYSTEMS_SMOKE`, `TARGET`, أو `REFERENCE`.
+## Key Technologies
 
-| Component | Metric | Result + label | Split/workload | Evidence |
-|---|---|---:|---|---|
-| topic classification | Macro-F1 | FILL_ME | FILL_ME | FILL_ME |
-| sentiment classification | Macro-F1 | FILL_ME | FILL_ME | FILL_ME |
-| NER | entity F1 | FILL_ME | FILL_ME | FILL_ME |
-| QA | EM/F1/no-answer | FILL_ME | FILL_ME | FILL_ME |
-| search | Recall@k/MRR | FILL_ME | FILL_ME | FILL_ME |
-| serving | p95/throughput/quality tax | FILL_ME | FILL_ME | `BENCHMARKS.md` |
+- Python
+- Google Colab / Jupyter
+- NumPy
+- spaCy
+- Hugging Face Transformers
+- Tokenizers
+- PyTorch
+- Scikit-learn
+- CAMeL Tools
+- Sentence Transformers
+- FAISS
+- ONNX
+- ONNX Runtime
+- FastAPI
+- Matplotlib
 
-## Error found and decision | خطأ وقرار
+---
 
-- Observed failure: FILL_ME
-- Slice/taxonomy: FILL_ME
-- Fix or deferred action: FILL_ME
-- Evidence after change: FILL_ME
+## Repository Structure
 
-## Measured extension | الامتداد المقاس
-
-- Extension chosen: FILL_ME
-- Baseline: FILL_ME
-- Benefit/cost metric: FILL_ME
-- Evidence path: FILL_ME
-- Decision and limitation: FILL_ME
-
-## Repository evidence
-
-- `DATA_CARD.md`
-- `MODEL_CARD.md`
-- `EVALUATION_REPORT.md`
-- `BENCHMARKS.md`
-- `DECISIONS.md`
-- `PROGRESS.md`
-- `PROJECT_SUMMARY.json`
-- `SUBMISSION.yml`
-
-## Limitations and responsible use
-
-- Data limitation: FILL_ME
-- Arabic/dialect/Arabizi limitation: FILL_ME
-- Task/model limitation: FILL_ME
-- Evaluation uncertainty: FILL_ME
-- Serving/security limitation: FILL_ME
-- Human review requirement: FILL_ME
-
-## Final validation
-
-```bash
-PYTHONPATH=src python scripts/validate_submission.py . --require-tag
-PYTHONPATH=src python scripts/preflight_submission.py . --require-tag
+```text
+Bayan-NLP-anas-al-mutairi/
+├── README.md
+├── DECISIONS.md
+├── BENCHMARKS.md
+├── PROJECT_SUMMARY.json
+├── preflight.py
+├── requirements.txt
+├── bayan_additions/
+├── notebooks/
+│   ├── 03_sentiment_completion.ipynb
+│   ├── 03_topic_completion.ipynb
+│   ├── 05_arabic_profiles.ipynb
+│   ├── 08_project_benchmark.ipynb
+│   └── bayan_NLP_ANAS_AI_Mutairi.ipynb
+├── reports/
+│   ├── EVALUATION_REPORT.md
+│   └── preflight.json
+└── tests/
+    ├── README.md
+    └── test_contracts.py
 ```
 
-- Validator status: FILL_ME
-- CI badge/link: FILL_ME
-- Release `submission-v1.0`: FILL_ME
+---
 
-## Presentation | العرض
+## How to Run / Reproduction Steps
 
-See `PRESENTATION.md`. FILL_ME: link your own examples and reports.
+1. Open [`notebooks/bayan_NLP_ANAS_AI_Mutairi.ipynb`](notebooks/bayan_NLP_ANAS_AI_Mutairi.ipynb) in Google Colab.
+2. Install the dependencies listed in [`requirements.txt`](requirements.txt).
+3. Use a current Python 3.11+ runtime.
+4. Run cells in order.
+5. Allow model downloads when required.
+6. Confirm the final `*_CORE=PASS` checks.
+7. Review the generated evidence in [`reports/`](reports/) and the benchmark/decision files in the repository root.
 
-## My contribution | مساهمتي
+---
 
-- My change and file: FILL_ME
-- Reason and evidence: FILL_ME
+## Reproducibility and Evaluation Notes
 
-## AI assistance | الاستعانة بالأدوات
+- Fixed seeds are used where applicable.
+- Validation-only threshold tuning is used before test evaluation in semantic search.
+- Group/split isolation checks are included in classification.
+- Evaluation includes small-slice warnings and uncertainty reporting.
+- Optimisation decisions include both latency and quality/parity checks.
+- Smoke-test/course-fixture results are labelled honestly and are not presented as production certification.
 
-FILL_ME: tool, assistance, verification and source credits—or honestly state none.
+---
 
-## Training context | السياق التدريبي
+## Supporting Documentation
 
-This educational project was developed during Applied Natural Language Processing
-with Transformers (SDA-AIE-211) in the SDAIA Academy training context.
-أُنجز هذا المشروع التعليمي ضمن دورة معالجة اللغات الطبيعية باستخدام المحولات
-(SDA-AIE-211) في السياق التدريبي لأكاديمية سدايا.
+- [`DECISIONS.md`](DECISIONS.md) — important technical decisions and evidence
+- [`reports/EVALUATION_REPORT.md`](reports/EVALUATION_REPORT.md) — evaluation/error-analysis summary
+- [`BENCHMARKS.md`](BENCHMARKS.md) — optimisation and serving benchmark summary
+- [`PROJECT_SUMMARY.json`](PROJECT_SUMMARY.json) — machine-readable project summary
+- [`reports/preflight.json`](reports/preflight.json) — preflight evidence
+- [`requirements.txt`](requirements.txt) — main dependencies used by the notebook
 
-Academy | الأكاديمية: [SDAIA Academy](https://github.com/SDAIAAcademy)  
-Trainer | المدربة: Meaad Al-Marri — ميعاد المري  
-Course source: https://github.com/almiyead-rgb/bayan-applied-nlp-course  
-#SDAIAAcademy
+---
 
-This attribution does not claim Academy endorsement or ownership of third-party assets.
-لا يدعي هذا النسب اعتماد المشروع أو تملك أصول الأطراف الأخرى.
+## Attribution and Sources
 
-## Final hand-in acknowledgement | إقرار التسليم النهائي
+- **Program:** Applied Natural Language Processing
+- **Program Code:** SDA-AIE-211
+- **Training Provider:** SDAIA Academy
+- **Trainer:** Meaad Al-Marri
+- **Tag:** #SDAIAAcademy
+- **Course site:** https://almiyead-rgb.github.io/bayan-applied-nlp-course/
+- **Course repository:** https://github.com/almiyead-rgb/bayan-applied-nlp-course
+- **SDAIA Academy:** https://github.com/SDAIAAcademy
 
-FILL_ME: confirm you reviewed all requirements and understand this version is graded once, with no edited replacement after hand-in. Final tag: `submission-v1.0`.
+---
 
-## License and acknowledgements
+## Certificate
 
-FILL_ME: project code license, dataset/model/library licenses, and source links. Do not imply ownership of third-party models, libraries, or institutional marks.
+**Program:** Applied Natural Language Processing  
+**Participant:** Anas Ibrahim Al-Mutairi  
+**Project:** Bayan  
+
+> Add the final program certificate image/PDF here after it is issued, or link to it from a `docs/` folder.
+
+---
+
+## Author
+
+**Anas Ibrahim Al-Mutairi**  
+Applied Natural Language Processing  
+Project: **Bayan**
