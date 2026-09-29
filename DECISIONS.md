@@ -1,52 +1,48 @@
-# DECISIONS — Bayan
+# DECISIONS
 
-> انسخ القالب إلى `DECISIONS.md`. أضف قرارًا جديدًا لكل تغيير يؤثر في البيانات أو الجودة أو الخدمة.  
-> Copy to `DECISIONS.md`. Add one record for each material data, quality, or serving decision.
+## 1. Text Preparation
+- Preserve both raw text and model-ready text.
+- Mask PII examples such as email and Saudi mobile patterns before model use.
+- Validate Unicode handling before aggressive cleaning.
 
-## Decision D-001 — FILL_ME
+## 2. Tokenisation
+- Measure token fertility and truncation instead of assuming a tokenizer is suitable.
+- Keep truncation/padding behaviour explicit and test embedding shapes.
 
-- **Date:** FILL_ME
-- **Gate:** A / B / C / D / E — FILL_ME
-- **Status:** proposed / accepted / rejected / superseded — FILL_ME
-- **Owner:** FILL_ME
+## 3. Transformer Attention
+- Use scaled dot-product attention and validate row sums.
+- Apply causal masks so masked positions receive zero attention.
+- Verify NumPy attention against PyTorch for numerical parity.
 
-### Context | السياق
+## 4. Classification
+- Keep grouped split isolation to avoid leakage.
+- Baseline validation Macro-F1: 0.6667.
+- Selected Transformer epoch: 9.
+- Selected Transformer validation Macro-F1: 1.0000.
+- Transformer test Macro-F1: 0.8667; test accuracy: 0.875.
 
-FILL_ME: ما المشكلة أو القيد؟ ما الذي بقي ثابتًا؟
+## 5. NER and QA
+- Require strict BIO/subword alignment and boundary checks.
+- Validate QA token offsets and no-answer behaviour.
+- NER F1 recorded in the notebook: 0.5714.
 
-### Options considered | البدائل
+## 6. Semantic Search
+- Use L2-normalised sentence vectors with FAISS.
+- Tune the no-answer threshold on validation only.
+- Frozen threshold: 0.4592.
+- Re-ranking improved MRR@3 from 0.6667 to 0.7222 (+0.0556).
+- Decision: ADOPT_FOR_EXPERIMENT.
 
-| Option | Benefit | Cost/risk | Evidence |
-|---|---|---|---|
-| A | FILL_ME | FILL_ME | FILL_ME |
-| B | FILL_ME | FILL_ME | FILL_ME |
+## 7. Evaluation
+- Include slices, sample-size warnings, confidence intervals, paired comparisons, and a manual error taxonomy.
+- Behavioural fixture pass rate: 3/6 = 0.50.
+- Use the three ranked fixes recorded in the notebook rather than hiding observed failure modes.
 
-### Decision | القرار
-
-FILL_ME
-
-### Evidence | الدليل
-
-- Report/test/commit: FILL_ME
-- Metric and result label: FILL_ME
-- Slice or failure considered: FILL_ME
-
-### Consequences and rollback | الأثر والرجوع
-
-- Positive consequence: FILL_ME
-- Limitation/new risk: FILL_ME
-- Rollback trigger: FILL_ME
-- Rollback path: FILL_ME
-
----
-
-## قرارات إلزامية قبل Gate E
-
-- [ ] tokenizer + max length.
-- [ ] Arabic preprocessing profile.
-- [ ] task model/baseline and split.
-- [ ] semantic encoder/index/k/threshold.
-- [ ] metric/slices/error priorities.
-- [ ] performance budget.
-- [ ] ONNX/INT8 adopt or reject.
-- [ ] served artefact + preprocessing/label versions.
+## 8. Optimisation and Serving
+- Compare PyTorch, ONNX FP32 and dynamic INT8 with quality/parity checks.
+- ONNX FP32 prediction agreement: 1.0.
+- INT8 prediction agreement: 1.0.
+- p95 latency: 9.541 ms (ONNX FP32) vs 7.922 ms (INT8).
+- INT8 size: 4.287 MiB.
+- Selected candidate: onnx-dynamic-int8.
+- Notebook decision: ADOPT_INT8 / SYSTEMS_SMOKE_NOT_A_SHIP_DECISION.
