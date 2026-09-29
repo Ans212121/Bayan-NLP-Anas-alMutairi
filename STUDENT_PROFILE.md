@@ -37,10 +37,10 @@ Small datasets, limited dialect coverage, class imbalance, ambiguous examples, a
 
 ## Integrity declaration | إقرار النزاهة
 
-- [ ] أفهم كل كود وقرار أسلمه ويمكنني شرحه.
-- [ ] نسبت المصادر والمكتبات والنماذج والبيانات إلى أصحابها.
-- [ ] لم أستخدم بيانات شخصية أو أسرارًا.
-- [ ] لم أغيّر test labels أو validator للحصول على PASS.
+- [x ] أفهم كل كود وقرار أسلمه ويمكنني شرحه.
+- [x ] نسبت المصادر والمكتبات والنماذج والبيانات إلى أصحابها.
+- [ x] لم أستخدم بيانات شخصية أو أسرارًا.
+- [x ] لم أغيّر test labels أو validator للحصول على PASS.
 
 Signature/display name: Anas Ibrahim Al-Mutairi  
 Date: 2026-09-29
