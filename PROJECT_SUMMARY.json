@@ -1,14 +1,20 @@
 {
-  "student_github": "YOUR_USERNAME",
-  "repository_url": "https://github.com/YOUR_USERNAME/bayan-nlp-YOUR_USERNAME",
+  "student_github": "Ans212121",
+  "repository_url": "https://github.com/Ans212121/Bayan-NLP-Anas-alMutairi",
   "languages": ["ar", "en"],
-  "tasks": ["classification", "sentiment", "ner", "qa", "semantic_search"],
+  "tasks": [
+    "classification",
+    "sentiment",
+    "ner",
+    "qa",
+    "semantic_search"
+  ],
   "extension": {
-    "name": "FILL_ME",
-    "evidence": "FILL_ME"
+    "name": "Cross-encoder re-ranking for bilingual semantic search",
+    "evidence": "MRR@3 improved from 0.6667 to 0.7222; see EVALUATION_REPORT.md and DECISIONS.md"
   },
   "benchmark_mode": "PROJECT_ARTIFACT",
   "final_tag": "submission-v1.0",
-  "privacy_check": false,
-  "tests_passed": false
+  "privacy_check": true,
+  "tests_passed": true
 }
