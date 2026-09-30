@@ -1,0 +1,38 @@
+{
+  "artifact": "bayan_arabic_profile",
+  "data_kind": "COURSE_FIXTURE",
+  "profile": "search",
+  "profile_version": "1.0.0",
+  "backend": "camel-tools==1.6.0",
+  "rules": [
+    "preserve_display_copy",
+    "mask_course_pii_patterns",
+    "unicode_normalize_no_compatibility",
+    "remove_tatweel_and_diacritics",
+    "fold_alef_and_alef_maksura",
+    "preserve_teh_marbuta"
+  ],
+  "golden_cases_passed": 4,
+  "golden_cases_total": 4,
+  "fixture_rows": 20,
+  "variant_counts_are_predictions": false,
+  "model_comparison": [
+    {
+      "model_id": "distilbert/distilbert-base-multilingual-cased",
+      "optimizer_steps": 40,
+      "validation_n": 4,
+      "frozen_gulf_test_n": 4,
+      "gulf_test_macro_f1": 0.0,
+      "result_type": "MEASURED_SMOKE"
+    },
+    {
+      "model_id": "CAMeL-Lab/bert-base-arabic-camelbert-da",
+      "optimizer_steps": 40,
+      "validation_n": 4,
+      "frozen_gulf_test_n": 4,
+      "gulf_test_macro_f1": 0.6667,
+      "result_type": "MEASURED_SMOKE"
+    }
+  ],
+  "core_marker": "DAY3_NOTEBOOK5_CORE=PASS"
+}
