@@ -1,0 +1,19 @@
+{
+  "result_type": "MEASURED_SMOKE",
+  "source_notebook": "bayan_NLP_ANAS_AI_Mutairi (2).ipynb",
+  "model_id": "distilbert/distilbert-base-multilingual-cased",
+  "split": {
+    "train_rows": 24,
+    "validation_rows": 8,
+    "test_rows": 8,
+    "group_overlap": 0
+  },
+  "selected_epoch": 9,
+  "baseline_validation_macro_f1": 0.6666666666666666,
+  "transformer_validation_macro_f1": 1.0,
+  "validation_delta": 0.33333333333333337,
+  "baseline_test_macro_f1": 0.7333333333333334,
+  "transformer_test_macro_f1": 0.8666666666666667,
+  "transformer_test_accuracy": 0.875,
+  "core_marker": "DAY2_NOTEBOOK3_CORE=PASS"
+}
