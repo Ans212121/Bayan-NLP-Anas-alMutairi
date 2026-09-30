@@ -2,19 +2,13 @@
   "student_github": "Ans212121",
   "repository_url": "https://github.com/Ans212121/Bayan-NLP-Anas-alMutairi",
   "languages": ["ar", "en"],
-  "tasks": [
-    "classification",
-    "sentiment",
-    "ner",
-    "qa",
-    "semantic_search"
-  ],
+  "tasks": ["classification", "sentiment", "ner", "qa", "semantic_search"],
   "extension": {
-    "name": "Cross-encoder re-ranking for bilingual semantic search",
-    "evidence": "MRR@3 improved from 0.6667 to 0.7222; see EVALUATION_REPORT.md and DECISIONS.md"
+    "name": "batch endpoint",
+    "evidence": "reports/extension_batch_endpoint.json"
   },
-  "benchmark_mode": "PROJECT_ARTIFACT",
+  "benchmark_mode": "SYSTEMS_SMOKE",
   "final_tag": "submission-v1.0",
   "privacy_check": true,
-  "tests_passed": true
+  "tests_passed": false
 }
