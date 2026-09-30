@@ -1,0 +1,17 @@
+{
+  "status": "FAIL",
+  "checks": [
+    "Required project structure",
+    "Nine valid notebooks and Core markers",
+    "No forbidden or oversized tracked artefacts"
+  ],
+  "warnings": [
+    "Run again with --require-tag after creating submission-v1.0.",
+    "Open the repository and Colab links in a private browser window; visibility is not verifiable offline."
+  ],
+  "errors": [
+    "final_tag must be submission-v1.0",
+    "benchmark_mode must be PROJECT_ARTIFACT for final submission",
+    "SUBMISSION.yml: final_tag must be submission-v1.0"
+  ]
+}

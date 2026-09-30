@@ -1,0 +1,6 @@
+{
+  "status": "UNMEASURED",
+  "task": "batch endpoint",
+  "metrics": null,
+  "reason": "Correction cells prepared but not run; this file is a status record, not passing evidence."
+}

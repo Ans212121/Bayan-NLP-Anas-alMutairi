@@ -70,15 +70,15 @@ Open the notebooks from **this repository**, save your own copy in Drive, then u
 
 | # | Notebook | Open in Colab | Purpose |
 |---:|---|---|---|
-| 00 | [runtime doctor](notebooks/00_runtime_doctor.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/00_runtime_doctor.ipynb) | environment |
-| 01 | [text processing/tokenisation](notebooks/01_text_processing_tokenization.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/01_text_processing_tokenization.ipynb) | Gate A |
-| 02 | [attention/transformers](notebooks/02_attention_transformers.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/02_attention_transformers.ipynb) | architecture |
-| 03 | [topic + separate sentiment](notebooks/03_text_classification.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/03_text_classification.ipynb) | Gate B |
-| 04 | [NER and QA](notebooks/04_ner_and_qa.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/04_ner_and_qa.ipynb) | Gate B |
-| 05 | [Arabic NLP](notebooks/05_arabic_nlp.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/05_arabic_nlp.ipynb) | Gate C |
-| 06 | [semantic search](notebooks/06_semantic_search.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/06_semantic_search.ipynb) | Gate C |
-| 07 | [evaluation/error analysis](notebooks/07_evaluation_error_analysis.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/07_evaluation_error_analysis.ipynb) | Gate C |
-| 08 | [optimisation/serving + batch extension](notebooks/08_optimization_serving.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/main/notebooks/08_optimization_serving.ipynb) | Gate D / R7 |
+| 00 | [runtime doctor](notebooks/00_runtime_doctor.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/00_runtime_doctor.ipynb) | environment |
+| 01 | [text processing/tokenisation](notebooks/01_text_processing_tokenization.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/01_text_processing_tokenization.ipynb) | Gate A |
+| 02 | [attention/transformers](notebooks/02_attention_transformers.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/02_attention_transformers.ipynb) | architecture |
+| 03 | [topic + separate sentiment](notebooks/03_text_classification.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/03_text_classification.ipynb) | Gate B |
+| 04 | [NER and QA](notebooks/04_ner_and_qa.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/04_ner_and_qa.ipynb) | Gate B |
+| 05 | [Arabic NLP](notebooks/05_arabic_nlp.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/05_arabic_nlp.ipynb) | Gate C |
+| 06 | [semantic search](notebooks/06_semantic_search.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/06_semantic_search.ipynb) | Gate C |
+| 07 | [evaluation/error analysis](notebooks/07_evaluation_error_analysis.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/07_evaluation_error_analysis.ipynb) | Gate C |
+| 08 | [optimisation/serving + batch extension](notebooks/08_optimization_serving.ipynb) | [Colab](https://colab.research.google.com/github/Ans212121/Bayan-NLP-Anas-alMutairi/blob/correction-evidence-audit-20260930/notebooks/08_optimization_serving.ipynb) | Gate D / R7 |
 
 Dependencies are pinned by day:
 - [requirements-day1.txt](requirements-day1.txt)
@@ -107,7 +107,7 @@ Exact slices and error evidence:
 
 ## Error found and decision
 
-Manual error review identified:
+The predefined COURSE_FIXTURE annotations (not a review of this trained model) contain:
 - `dialect_gap`: **3**
 - `hard_or_ambiguous`: **3**
 - `class_confusion`: **2**
@@ -198,27 +198,13 @@ PYTHONPATH=src python scripts/preflight_submission.py . --require-tag --report r
 
 ## My contribution | مساهمتي
 
-I built and ran the student project workflow in my own combined Colab notebook, including:
-- the two-copy preprocessing contract and PII masking;
-- local WordPiece metrics and checkpoint-matched multilingual tokenisation;
-- attention/masking/multi-head/parity experiments;
-- grouped topic-classification baseline and Transformer fine-tuning;
-- NER BIO/subword alignment and extractive QA/no-answer handling;
-- Arabic preprocessing profiles and CAMeL Tools checks;
-- bilingual sentence embeddings, L2 normalisation, FAISS retrieval and re-ranking;
-- bootstrap confidence intervals, slice analysis and manual error taxonomy.
+The supplied combined notebook is evidence of my saved Colab execution. [Cell provenance](reports/notebook_provenance.json) maps the extracted sections to original zero-based cells: preprocessing/tokenisation 6–15, attention 16–26, topic classification 27–39, NER/QA 40–57, Arabic 58–69, search 70–83 and evaluation 99–110. [Historical outputs](reports/historical_evidence.txt) preserve the measured evidence. Execution does not imply that all course code was independently authored by me; course code is attributed to Meaad Al-Marri.
 
-For the correction cycle, my project notebooks were reorganised into the required 00–08 paths, a **separate sentiment head** was added, and a **batch endpoint** extension plus a true PROJECT_ARTIFACT Day 4 rerun were prepared. New measured values are not claimed until I run and inspect them.
+The correction code and reorganisation were prepared with AI assistance and are awaiting my fresh execution and review. My understanding and final personal declaration cannot be verified automatically.
 
 ## AI assistance | الاستعانة بالأدوات
 
-I used **ChatGPT by OpenAI** as an assistance tool to:
-- interpret the grading feedback and course requirements;
-- reorganise my own notebook work into the required repository structure;
-- review documentation links and evidence paths;
-- suggest/debug code for the separate sentiment task, PROJECT_ARTIFACT benchmark setup and batch-endpoint extension.
-
-I verify this assistance by reading the code, running the notebooks myself in Google Colab, checking saved outputs and Core markers, running the course tests/validators, and comparing documentation claims against generated evidence files. Course materials, libraries, models and datasets remain attributed to their original sources.
+**ChatGPT / Codex by OpenAI** assisted with comparing the assessment, extracting and mapping my saved cells, correcting documentation, and preparing code for sentiment, artifact export, project evaluation and batch serving. These changes were inspected mechanically; they were not executed as a fresh Colab ML run by the assistant. I must inspect the code, run the corrected notebooks, compare generated reports and explain the decisions before final submission.
 
 ## Training context | السياق التدريبي
 
@@ -237,8 +223,19 @@ This attribution does not claim Academy endorsement or ownership of third-party 
 
 ## Correction status
 
-A backup of the repository before this correction cycle is preserved in branch:
-
-`backup-before-2026-09-30-evaluation-fixes`
-
 The old `submission-v1.0` release corresponds to the previously assessed version. The corrected release must only be finalised after clean notebook runs, validators and the trainer's allowed resubmission procedure.
+
+
+## Current blockers and exact rerun instructions
+
+Read [COLAB_RERUN.md](COLAB_RERUN.md) and [assessment repair matrix](reports/assessment_repair_matrix.md). New/changed cells have no fabricated outputs. The original 03 and 08 results remain in the historical evidence report; their changed dependent cells have been cleared.
+
+The actual runtime Git checkout of the old run was not captured. The assessed commit is an archive reference, not an asserted runtime commit. New runs print `RUN_COMMIT` and store it with the new project reports.
+
+The repository still needs the prescribed name `bayan-nlp-Ans212121`. The available GitHub connector does not expose repository rename; this remains a manual account setting. After renaming, update repository URLs/Colab links and the notebook setup URL before fresh runs.
+
+Historical commit timing cannot be repaired by backdating or manufacturing gate completion. Gates remain open until their actual new measurements exist. No corrected final tag has been selected or created.
+
+[Preflight report](reports/preflight.json) is a diagnostic, not a claim of completion. The expected blockers include unexecuted new cells, SYSTEMS_SMOKE benchmark status and the pending final tag.
+
+This correction is isolated on `correction-evidence-audit-20260930` while another session updates main. The Colab links and setup clone this correction branch. After merging, switch both consistently to main.

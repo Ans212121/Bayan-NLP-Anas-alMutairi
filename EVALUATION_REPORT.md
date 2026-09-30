@@ -5,7 +5,7 @@
 - تاريخ التشغيل المحفوظ: **2026-09-29**
 - Commit الذي كان يحتوي التشغيل الفعلي الذي قيّمته المدربة: `e6a4f3e0ba8478464ae8c24bd29f09df1d6c0026`
 - Runtime/device: **Google Colab / CPU**
-- Data version/hash: `bayan_day3_cases.csv` — SHA256 `7708cbe884a3c268d24ed2cb87ad2f0a8b64b2e6fa6b37a32393b6ae3bd50e5b`
+- Data provenance: retrieval hashes are in `reports/observed_search_manifest.json`; the evaluation fixture is `data/sample/bayan_day3_predictions.csv`. Do not substitute one dataset hash for another.
 - Arabic preprocessing: `search/1.0.0`, backend `camel-tools==1.6.0`
 - Search preprocessing: `arabic-search/1.0.0 + english-nfc-whitespace/1.0.0`
 - Main checkpoints:
@@ -84,7 +84,7 @@ Six explicit course-fixture behavioural cases were inspected.
 
 ## 7. تحليل الأخطاء اليدوي
 
-Eight failing/misclassified examples were tagged manually in the notebook.
+The notebook contains eight predefined annotations for the COURSE_FIXTURE predictions. They are not a newly completed personal analysis of the trained topic model. T5 personal error review remains open.
 
 | taxonomy tag | count | أمثلة | الفرضية |
 |---|---:|---|---|
@@ -94,7 +94,7 @@ Eight failing/misclassified examples were tagged manually in the notebook.
 
 Worksheet: `reports/day3_error_taxonomy.csv`.
 
-## 8. الإصلاحات الثلاثة ذات الأولوية
+## 8. توصيات المثال التعليمي — ليست إصلاحات مثبتة لنموذج الطالب
 
 | الأولوية | الدليل | الإجراء | قياس القبول |
 |---:|---|---|---|
@@ -113,3 +113,17 @@ The preserved Day 4 measurements are **SYSTEMS_SMOKE only** and are not a final 
 The preserved run demonstrates an end-to-end bilingual NLP workflow and provides traceable topic, NER, QA, retrieval and evaluation evidence. Topic test Macro-F1 is **0.8667**, NER F1 is **0.5714**, and retrieval re-ranking changes MRR@3 from **0.6667** to **0.7222** on six answerable course queries.
 
 The corrected project now separates sentiment from topic classification, prepares a real PROJECT_ARTIFACT Day 4 rerun, and replaces re-ranking as the claimed R7 extension with a measured **batch endpoint**. Those new values must come from a clean Colab run before final submission.
+
+
+## 11. Audit correction: what is and is not proven
+
+- The assessed commit above identifies the submitted repository snapshot. The historical execution checkout SHA is **unknown**, because it was not recorded at runtime. See `reports/notebook_provenance.json` and the original cell indices in `reports/historical_evidence.txt`.
+- The displayed token fertility is for the tiny local WordPiece demo, not DistilBERT. Corrected 03 measures the project tokenizer separately and writes `reports/project_tokenizer.json`.
+- No sentiment metrics, PROJECT_ARTIFACT timings or batch-extension benefit have been measured in this correction session.
+- Corrected 03 exports actual validation predictions. Corrected 07 computes their paired CI and slices, then creates a personal error worksheet. Its result is separate from the 36-row course fixture.
+- The saved topic validation predictions (original cell 37) are 8/8 correct, so they cannot support an invented error taxonomy. A new run may also have no errors. In that case report zero honestly and obtain a permitted independent validation set; do not tune on the already-seen test set or claim the fixture's three fixes as personal discoveries.
+- Fresh reruns use tiny educational data and remain MEASURED_SMOKE for quality. A benchmark may be PROJECT_ARTIFACT because it uses the student's own checkpoint; this does not establish official cohort production targets.
+
+Current status: documentation and rerun code prepared; T3/T5 personal review/T6/T7 measured closure pending. No automatic score increase is claimed.
+
+Sentiment split audit: train negative/positive/neutral = 10/8/6; validation negative/neutral = 2/6 (no positive); test positive/negative = 2/6 (no neutral). Preserve the supplied grouped split, report fixed-contract Macro-F1 and support, and do not claim representative three-class performance.

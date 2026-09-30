@@ -104,12 +104,12 @@ Cross-encoder re-ranking is documented as part of the **core search requirement*
 
 Paired fixture difference B−A: **0.00120**, 95% bootstrap CI **[-0.10472, 0.09963]**. Because the interval includes zero, the evidence does **not** support a directional superiority claim.
 
-Manual taxonomy counts:
+Predefined COURSE_FIXTURE taxonomy counts (not personal model-error analysis):
 - `dialect_gap`: **3**
 - `hard_or_ambiguous`: **3**
 - `class_confusion`: **2**
 
-Priorities are therefore:
+Course exercise recommendations, pending actual model error review:
 1. improve Gulf health/transport coverage;
 2. add contrastive examples for app/status class confusion;
 3. handle underspecified short requests with more context or abstention.
@@ -140,10 +140,22 @@ Re-ranking was removed as the claimed extension because it is part of the core s
 - [x] Arabic preprocessing profile documented
 - [x] topic model/baseline/split documented
 - [x] semantic encoder/index/threshold documented
-- [x] evaluation slices/error priorities documented
+- [x] fixture slices documented
+- [ ] personal model error review and derived priorities completed
 - [x] attention interpretation limitation documented
 - [ ] separate sentiment clean-run evidence committed
 - [ ] PROJECT_ARTIFACT benchmark completed
 - [ ] ONNX/INT8 project decision completed
 - [ ] batch-endpoint measured extension completed
 - [ ] final validator/preflight reports committed
+
+
+## D-010 — Audit corrections and provenance
+
+Local WordPiece fertility 1.36 and truncation 0% at length 10 refer only to original cell 12's five sample strings. They do not quantify the selected multilingual tokenizer. `reports/tokenizer_evidence.json` records this boundary; corrected 03 measures fertility/truncation on actual validation inputs.
+
+The Arabic search profile applies to search. The corrected classifier uses `bayan-protected-nfc/1.0.0` in both training and serving: NFC, course email/phone masking and whitespace normalization without Alef or Teh Marbuta folding. This preserves checkpoint input conventions. The implementation is `src/bayan/correction_preprocessing.py`. Changing this pipeline invalidates old topic metrics as evidence of the corrected model.
+
+The Day 4 performance budget is an editable TARGET, not a measurement or an automatically accepted student decision. Notebook 08 deliberately stops until the student reviews it and sets `BUDGET_CONFIRMED=True` before measuring candidates. All candidates use the same complete validation workload, CPU, maximum length and label map. Startup canary labels come from the independent FP32 reference. Batch comparison uses the same selected runtime and includes in-process HTTP handling and tokenization on both paths. This is not the official network/concurrency target.
+
+Do not close gates from copied PASS strings. Corrected 03 chooses the best validation epoch on GPU and CPU. Test results are for final reporting, not tuning. The old frozen-test results are already disclosed; this correction does not claim they are unseen.

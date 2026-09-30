@@ -1,0 +1,397 @@
+ORIGINAL CELL 3
+✅ python_3_10_or_newer
+✅ utf8_round_trip
+✅ numpy_available
+✅ pandas_available
+✅ sklearn_available
+✅ torch_available
+✅ disk_has_1_gib_free
+
+BAYAN_ENV_READY = True
+
+
+ORIGINAL CELL 5
+Saved: runtime_report.json
+Size: 776 bytes
+
+
+ORIGINAL CELL 12
+Token fertility per sample: [1.17, 1.0, 1.5, 2.0, 1.14]
+Average token fertility: 1.36
+Truncation rate at length 10: 0%
+Tokenisation metrics=PASS
+
+
+ORIGINAL CELL 14
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+config.json:   0%|          | 0.00/625 [00:00<?, ?B/s]tokenizer_config.json:   0%|          | 0.00/49.0 [00:00<?, ?B/s]vocab.txt:   0%|          | 0.00/996k [00:00<?, ?B/s]tokenizer.json:   0%|          | 0.00/1.96M [00:00<?, ?B/s]mBERT tokens: ['مع', '##الجة', 'اللغة', 'الطبيعية', 'م', '##فيد', '##ة', 'Natural', 'language', 'processing', 'is', 'useful']
+mBERT token count: 12
+Fast tokenizer: True
+
+
+ORIGINAL CELL 15
+unicode: PASS
+spacy_sentence_pipeline: PASS
+raw_copy_preserved: PASS
+pii_masked: PASS
+token_metrics: PASS
+embedding_shape: PASS
+DAY1_NOTEBOOK1_CORE=PASS
+
+
+ORIGINAL CELL 25
+weights_sum_to_one: PASS
+two_checkpoint_parameter_audit: PASS
+actual_forward: PASS
+output_shape: PASS
+masked_positions_zero: PASS
+heads_round_trip: PASS
+DAY1_NOTEBOOK2_CORE=PASS
+
+
+ORIGINAL CELL 26
+Original output:
+[[6.017 3.983]
+ [3.983 6.017]]
+
+New output after changing V:
+[[12.033  7.967]
+ [ 7.967 12.033]]
+
+Attention weights:
+[[0.401 0.198 0.401]
+ [0.198 0.401 0.401]]
+
+Observation:
+Changing V changes the final output, while the attention weights remain based on Q and K.
+
+
+ORIGINAL CELL 31
+{
+  "rows": {
+    "train": 24,
+    "validation": 8,
+    "test": 8
+  },
+  "groups": 20,
+  "labels": [
+    "digital_service",
+    "health",
+    "permit",
+    "transport"
+  ],
+  "group_overlap": 0
+}
+Split contract=PASS
+
+
+ORIGINAL CELL 36
+epoch=01 mean_loss=1.4031 validation_macro_f1=0.2917
+epoch=02 mean_loss=1.3156 validation_macro_f1=0.4167
+epoch=03 mean_loss=1.2396 validation_macro_f1=0.4167
+epoch=04 mean_loss=1.1272 validation_macro_f1=0.6250
+epoch=05 mean_loss=0.9523 validation_macro_f1=0.6250
+epoch=06 mean_loss=0.7202 validation_macro_f1=0.7500
+epoch=07 mean_loss=0.4770 validation_macro_f1=0.8667
+epoch=08 mean_loss=0.2488 validation_macro_f1=0.8667
+epoch=09 mean_loss=0.1160 validation_macro_f1=1.0000
+epoch=10 mean_loss=0.0552 validation_macro_f1=1.0000
+epoch=11 mean_loss=0.0225 validation_macro_f1=1.0000
+epoch=12 mean_loss=0.0115 validation_macro_f1=0.8667
+Transformer optimizer steps=PASS {'steps': 72, 'selected_epoch': 9}
+
+
+ORIGINAL CELL 37
+Selected epoch: 9
+Transformer validation macro-F1 (MEASURED_SMOKE): 1.0
+Validation delta vs TF-IDF baseline: 0.3333
+Validation predictions: [('digital_service', 'digital_service'), ('digital_service', 'digital_service'), ('permit', 'permit'), ('permit', 'permit'), ('health', 'health'), ('health', 'health'), ('transport', 'transport'), ('transport', 'transport')]
+
+
+ORIGINAL CELL 38
+{
+  "result_type": "MEASURED_SMOKE",
+  "data_source": "github_course_file",
+  "model_id": "distilbert/distilbert-base-multilingual-cased",
+  "device": "cpu",
+  "training_mode": "partial_finetune_cpu",
+  "seed": 42,
+  "epochs_run": 12,
+  "selected_epoch": 9,
+  "train_steps": 72,
+  "mean_train_loss": 0.6407361574496867,
+  "baseline_validation_macro_f1": 0.6666666666666666,
+  "transformer_validation_macro_f1": 1.0,
+  "validation_delta_vs_baseline": 0.33333333333333337,
+  "baseline_beaten_on_validation": true,
+  "baseline_test_macro_f1": 0.7333333333333333,
+  "transformer_test_macro_f1": 0.8666666666666667,
+  "transformer_test_accuracy": 0.875,
+  "limitations": [
+    "synthetic tiny dataset",
+    "small validation set used for epoch selection",
+    "not an estimate of production quality"
+  ]
+}
+800
+
+ORIGINAL CELL 49
+NER entity metrics (MEASURED_SMOKE):
+{
+  "precision": 0.6666666666666666,
+  "recall": 0.5,
+  "f1": 0.5714285714285715,
+  "true_entities": 4,
+  "predicted_entities": 3
+}
+
+
+ORIGINAL CELL 56
+{
+  "result_type": "MEASURED_SMOKE",
+  "model_id": "distilbert/distilbert-base-multilingual-cased",
+  "device": "cpu",
+  "training_mode": "partial_finetune_cpu",
+  "seed": 42,
+  "ner_data_source": "github_course_file",
+  "ner_steps": 48,
+  "ner_epochs": 12,
+  "ner_mean_loss": 0.862140710077559,
+  "ner_entity_metrics": {
+    "precision": 0.6666666666666666,
+    "recall": 0.5,
+    "f1": 0.5714285714285715,
+    "true_entities": 4,
+    "predicted_entities": 3
+  },
+  "qa_data_source": "github_course_file",
+  "qa_steps": 3,
+  "qa_loss": 3.6450522740681968,
+  "qa_span_test": {
+    "answer": "الرياض",
+    "score": 8.5,
+    "start": 16,
+    "end": 22,
+    "null_margin": -8.5
+  },
+  "qa_null_test": {
+    "answer": null,
+    "reason": "no_answer_in_context",
+    "margin": 6.0
+  },
+  "limitations": [
+    "synthetic tiny datasets",
+    "short training smoke",
+    "NER and QA quality are not production estimates"
+  ]
+}
+
+
+ORIGINAL CELL 64
+PASS إِدَارَةُ الحِساب → ادارة الحساب
+PASS على  الطـريق → علي الطريق
+PASS إدارةُ الحساب → إدارةُ الحساب
+PASS راسل test@example.com → راسل [EMAIL]
+GOLDEN_TESTS=PASS
+
+
+ORIGINAL CELL 67
+{
+  "artifact": "bayan_arabic_profile",
+  "data_kind": "COURSE_FIXTURE",
+  "profile": "search",
+  "profile_version": "1.0.0",
+  "backend": "camel-tools==1.6.0",
+  "rules": [
+    "preserve_display_copy",
+    "mask_course_pii_patterns",
+    "unicode_normalize_no_compatibility",
+    "remove_tatweel_and_diacritics",
+    "fold_alef_and_alef_maksura",
+    "preserve_teh_marbuta"
+  ],
+  "golden_cases_passed": 4,
+  "fixture_rows": 20,
+  "variant_counts_are_predictions": false
+}
+
+
+ORIGINAL CELL 68
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]{'model_id': 'distilbert/distilbert-base-multilingual-cased', 'optimizer_steps': 40, 'validation_n': 4, 'frozen_gulf_test_n': 4, 'gulf_test_macro_f1': 0.0, 'result_type': 'MEASURED_SMOKE'}
+{'model_id': 'CAMeL-Lab/bert-base-arabic-camelbert-da', 'optimizer_steps': 40, 'validation_n': 4, 'frozen_gulf_test_n': 4, 'gulf_test_macro_f1': 0.6667, 'result_type': 'MEASURED_SMOKE'}
+ARABIC_MODEL_COMPARISON=MEASURED_SMOKE
+
+
+ORIGINAL CELL 69
+{'camel_tools_pinned': True, 'dialect_comparison_ran': True, 'display_copy_preserved': True, 'golden_tests': True, 'named_profile': True, 'arabizi_not_called_classifier': True, 'artifact_written': True}
+DAY3_NOTEBOOK5_CORE=PASS
+
+
+ORIGINAL CELL 78
+ranked 10 validation and 8 test queries
+
+
+ORIGINAL CELL 79
+VALIDATION_ONLY {'threshold': 0.4592095613479614, 'validation_accuracy': 1.0}
+TEST_WITH_FROZEN_THRESHOLD {'no_answer_accuracy': 1.0}
+
+
+ORIGINAL CELL 80
+MEASURED_SMOKE overall {'recall@3': 1.0, 'mrr@3': 0.6666666666666666, 'answerable_queries': 6}
+MEASURED_SMOKE {'slice': 'language=ar', 'n': 3, 'flag': 'SMALL_SLICE', 'recall@3': 1.0, 'mrr@3': 0.5, 'answerable_queries': 3}
+MEASURED_SMOKE {'slice': 'language=en', 'n': 3, 'flag': 'SMALL_SLICE', 'recall@3': 1.0, 'mrr@3': 0.8333333333333334, 'answerable_queries': 3}
+MEASURED_SMOKE {'slice': 'retrieval_mode=cross_lingual', 'n': 2, 'flag': 'SMALL_SLICE', 'recall@3': 1.0, 'mrr@3': 0.5, 'answerable_queries': 2}
+MEASURED_SMOKE {'slice': 'retrieval_mode=monolingual', 'n': 4, 'flag': 'SMALL_SLICE', 'recall@3': 1.0, 'mrr@3': 0.75, 'answerable_queries': 4}
+
+
+ORIGINAL CELL 81
+{
+  "manifest_version": "1.0.0",
+  "model_id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_dimension": 384,
+  "normalization": "l2",
+  "preprocessing_profile": "arabic-search/1.0.0 + english-nfc-whitespace/1.0.0",
+  "dataset_id": "bayan_day3_cases.csv",
+  "dataset_sha256": "7708cbe884a3c268d24ed2cb87ad2f0a8b64b2e6fa6b37a32393b6ae3bd50e5b",
+  "vector_count": 24,
+  "index_type": "IndexFlatIP",
+  "data_kind": "MEASURED_SMOKE",
+  "libraries": {
+    "camel-tools": "1.6.0",
+    "sentence-transformers": "6.0.0",
+    "faiss-cpu": "1.15.0",
+    "transformers": "5.15.1",
+    "tokenizers": "0.22.2"
+  }
+}
+
+
+ORIGINAL CELL 82
+config.json:   0%|          | 0.00/891 [00:00<?, ?B/s]model.safetensors: reconstructing file:   0%|          |  0.00B /  471MB            model.safetensors: downloading bytes:           |  0.00B            Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]tokenizer_config.json:   0%|          | 0.00/435 [00:00<?, ?B/s]sentencepiece.bpe.model: reconstructing file:   0%|          |  0.00B / 5.07MB            sentencepiece.bpe.model: downloading bytes:           |  0.00B            tokenizer.json: reconstructing file:   0%|          |  0.00B / 17.1MB            tokenizer.json: downloading bytes:           |  0.00B            special_tokens_map.json:   0%|          | 0.00/239 [00:00<?, ?B/s]{
+  "result_type": "MEASURED_SMOKE",
+  "reranker_id": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+  "candidate_count": 6,
+  "answerable_test_queries": 6,
+  "mrr_at_3_before": 0.6666666666666666,
+  "mrr_at_3_after": 0.7222222222222223,
+  "mrr_at_3_delta": 0.05555555555555569,
+  "warmup_excluded": true,
+  "decision": "ADOPT_FOR_EXPERIMENT",
+  "latency_note": "measured on CPU; runtime-dependent"
+}
+RERANKING_TRADEOFF=MEASURED_SMOKE
+
+
+ORIGINAL CELL 83
+{'actual_sentence_model': True, 'reranking_measured': True, 'all_corpus_vectors_created': True, 'l2_normalised': True, 'faiss_count_matches': True, 'manifest_matches': True, 'validation_only_threshold': True, 'metrics_in_range': True, 'reports_written': True}
+DAY3_NOTEBOOK6_CORE=PASS
+
+
+ORIGINAL CELL 103
+COURSE_FIXTURE A {'estimate': 0.7807469040247678, 'ci_low': 0.6212498015141271, 'ci_high': 0.8982313491237977, 'n_boot': 1000}
+COURSE_FIXTURE B {'estimate': 0.7819444444444444, 'ci_low': 0.6169212785382484, 'ci_high': 0.9042122693118788, 'n_boot': 1000}
+
+
+ORIGINAL CELL 104
+COURSE_FIXTURE paired B-A {'difference_b_minus_a': 0.0011975404196766792, 'ci_low': -0.10472316166062473, 'ci_high': 0.09963005211966207, 'supports_directional_claim': False}
+VERDICT: The interval includes zero; this fixture does not support a directional superiority claim.
+
+
+ORIGINAL CELL 105
+{'slice': 'ALL', 'n': 36, 'flag': '', 'estimate': 0.7819444444444444, 'ci_low': 0.6111751181328388, 'ci_high': 0.8961752409994097, 'n_boot': 500}
+{'slice': 'language=ar', 'n': 24, 'flag': '', 'estimate': 0.758288770053476, 'ci_low': 0.5606515151515151, 'ci_high': 0.9265451388888888, 'n_boot': 500}
+{'slice': 'language=en', 'n': 12, 'flag': 'SMALL_SLICE', 'estimate': 0.8285714285714286, 'ci_low': 0.49999999999999994, 'ci_high': 1.0, 'n_boot': 500}
+{'slice': 'variant=English', 'n': 12, 'flag': 'SMALL_SLICE', 'estimate': 0.8285714285714286, 'ci_low': 0.496540854978355, 'ci_high': 1.0, 'n_boot': 500}
+{'slice': 'variant=Gulf', 'n': 12, 'flag': 'SMALL_SLICE', 'estimate': 0.6583333333333333, 'ci_low': 0.29405906593406594, 'ci_high': 0.8951767676767677, 'n_boot': 500}
+{'slice': 'variant=MSA', 'n': 12, 'flag': 'SMALL_SLICE', 'estimate': 0.8374999999999999, 'ci_low': 0.5304166666666666, 'ci_high': 1.0, 'n_boot': 500}
+{'slice': 'length_bucket=long', 'n': 18, 'flag': '', 'estimate': 0.525925925925926, 'ci_low': 0.3918026418026418, 'ci_high': 0.830800530738611, 'n_boot': 500}
+{'slice': 'length_bucket=short', 'n': 18, 'flag': '', 'estimate': 0.8285714285714285, 'ci_low': 0.625, 'ci_high': 1.0, 'n_boot': 500}
+
+
+ORIGINAL CELL 106
+{'case': 'Gulf verification code → digital_service', 'example_id': 'EV-001', 'expected': 'digital_service', 'actual': 'digital_service', 'passed': True}
+{'case': 'MSA upload failure → digital_service', 'example_id': 'EV-017', 'expected': 'digital_service', 'actual': 'digital_service', 'passed': True}
+{'case': 'Gulf missing health result → health', 'example_id': 'EV-006', 'expected': 'health', 'actual': 'transport', 'passed': False}
+{'case': 'English missing lab result → health', 'example_id': 'EV-030', 'expected': 'health', 'actual': 'transport', 'passed': False}
+{'case': 'MSA bus route → transport', 'example_id': 'EV-020', 'expected': 'transport', 'actual': 'digital_service', 'passed': False}
+{'case': 'English double charge → permit', 'example_id': 'EV-035', 'expected': 'permit', 'actual': 'permit', 'passed': True}
+COURSE_FIXTURE behavioural {'passed': 3, 'total': 6, 'pass_rate': 0.5}
+
+
+ORIGINAL CELL 107
+COURSE_FIXTURE taxonomy {'dialect_gap': 3, 'hard_or_ambiguous': 3, 'class_confusion': 2}
+
+
+ORIGINAL CELL 108
+[
+  {
+    "priority": 1,
+    "issue": "Gulf coverage for health and transport",
+    "evidence": "dialect_gap tags in validation fixture",
+    "change": "collect/review targeted Gulf examples",
+    "acceptance_test": "new behavioural cases plus sliced CI"
+  },
+  {
+    "priority": 2,
+    "issue": "class confusion around app/status wording",
+    "evidence": "EV-019 and EV-020",
+    "change": "add contrastive examples and review label guide",
+    "acceptance_test": "paired comparison without regression in other slices"
+  },
+  {
+    "priority": 3,
+    "issue": "underspecified short requests",
+    "evidence": "hard_or_ambiguous tags",
+    "change": "request context or abstain when confidence is low",
+    "acceptance_test": "ambiguity behavioural suite"
+  }
+]
+
+
+ORIGINAL CELL 109
+REPORTS_WRITTEN ['day3_error_taxonomy.csv', 'day3_evaluation_fixture.json', 'day3_slice_report.csv']
+
+
+ORIGINAL CELL 110
+{'fixture_disclosed': True, 'validation_only': True, 'confidence_intervals': True, 'paired_comparison': True, 'slices_present': True, 'small_slice_flags_present': True, 'behavioural_tests': True, 'manual_taxonomy': True, 'three_ranked_fixes': True, 'reports_written': True}
+DAY3_NOTEBOOK7_CORE=PASS
+
+
+ORIGINAL CELL 114
+ARTEFACT_ROLE SYSTEMS_SMOKE
+BUDGET_PROVENANCE COURSE_EXAMPLE_FOR_SYSTEMS_SMOKE
+TARGET {'max_p95_ms': 1000.0, 'min_throughput_items_s': 0.1, 'max_quality_tax': 0.05, 'target_device': 'colab-cpu'}
+
+
+ORIGINAL CELL 119
+PYTORCH_MODEL_ONLY {'p95_ms': 26.44, 'warmup': 5, 'repetitions': 30, 'items_per_call': 8}
+PYTORCH_END_TO_END {'measured': True, 'boundary': 'tokenisation + model', 'saved_in': 'reports/benchmark_results.json'}
+
+
+ORIGINAL CELL 121
+ONNX_FP32_PARITY=PASS {'max_abs_logits_diff': 2.980232238769531e-07, 'prediction_agreement': 1.0}
+ONNX_FP32_MODEL_ONLY {'p95_ms': 11.615, 'warmup': 5, 'repetitions': 30}
+
+
+ORIGINAL CELL 122
+INT8_ATTEMPT=PASS 4.287 MiB
+INT8_PARITY {'prediction_agreement': 1.0}
+INT8_MODEL_ONLY {'p95_ms': 8.561, 'warmup': 5, 'repetitions': 30}
+
+
+ORIGINAL CELL 123
+QUALITY_METRIC prediction_agreement_to_fp32_not_task_quality
+FP32_ORT_BUDGET {'latency_ok': True, 'quality_ok': True, 'throughput_ok': True, 'budget_met': True}
+INT8_BUDGET {'latency_ok': True, 'quality_ok': True, 'throughput_ok': True, 'budget_met': True}
+SELECTED_FOR_SERVICE onnx-dynamic-int8 ADOPT_INT8 SYSTEMS_SMOKE_NOT_A_SHIP_DECISION
+
+
+ORIGINAL CELL 126
+FASTAPI_TESTCLIENT=PASS {'health': 200, 'arabic': 200, 'english': 200, 'empty_rejected': 422, 'unsupported_language_rejected': 422, 'canaries': [{'name': 'arabic-contract', 'status': 'PASS', 'label': 'LABEL_2'}, {'name': 'english-contract', 'status': 'PASS', 'label': 'LABEL_2'}]}
+
+
+ORIGINAL CELL 128
+{'artefact_role_disclosed': True, 'budget_written_before_candidates': True, 'warmup_and_repetitions': True, 'bilingual_workload': True, 'length_audited': True, 'baseline_tail_latency': True, 'onnx_checked': True, 'onnx_numerical_parity': True, 'onnx_prediction_parity': True, 'int8_attempt_honest': True, 'quality_tax_explicit': True, 'fastapi_contract': True, 'startup_canaries': True, 'reports_written': True, 'large_artifacts_outside_repo': True}
+DAY4_NOTEBOOK8_CORE=PASS
+NEXT_REQUIRED_FOR_GATE_D=RERUN_WITH_PROJECT_ARTIFACT_AND_FULL_WORKLOAD

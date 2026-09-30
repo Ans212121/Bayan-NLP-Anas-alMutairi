@@ -1,24 +1,43 @@
 {
   "result_type": "MEASURED_SMOKE",
-  "source_notebook": "bayan_NLP_ANAS_AI_Mutairi (2).ipynb",
-  "ner": {
+  "model_id": "distilbert/distilbert-base-multilingual-cased",
+  "device": "cpu",
+  "training_mode": "partial_finetune_cpu",
+  "seed": 42,
+  "ner_data_source": "github_course_file",
+  "ner_steps": 48,
+  "ner_epochs": 12,
+  "ner_mean_loss": 0.862140710077559,
+  "ner_entity_metrics": {
     "precision": 0.6666666666666666,
     "recall": 0.5,
     "f1": 0.5714285714285715,
     "true_entities": 4,
     "predicted_entities": 3
   },
-  "qa": {
-    "optimizer_steps": 3,
-    "training_loss": 3.645052,
-    "span_example_answer": "الرياض",
-    "no_answer_reason": "no_answer_in_context"
+  "qa_data_source": "github_course_file",
+  "qa_steps": 3,
+  "qa_loss": 3.6450522740681968,
+  "qa_span_test": {
+    "answer": "الرياض",
+    "score": 8.5,
+    "start": 16,
+    "end": 22,
+    "null_margin": -8.5
   },
-  "checks": [
-    "NER alignment contract=PASS",
-    "Strict entity-boundary test=PASS",
-    "QA offsets-to-token positions=PASS",
-    "QA post-processing tests=PASS",
-    "DAY2_NOTEBOOK4_CORE=PASS"
-  ]
+  "qa_null_test": {
+    "answer": null,
+    "reason": "no_answer_in_context",
+    "margin": 6.0
+  },
+  "limitations": [
+    "synthetic tiny datasets",
+    "short training smoke",
+    "NER and QA quality are not production estimates"
+  ],
+  "_provenance": {
+    "cell": 56,
+    "source_sha256": "58a87d4b30c5817ab2d5b5f39f0ff44fee013853ef59413193c8bc2c4aa807e3",
+    "kind": "historical saved output"
+  }
 }

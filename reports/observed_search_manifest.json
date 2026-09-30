@@ -15,5 +15,10 @@
     "faiss-cpu": "1.15.0",
     "transformers": "5.15.1",
     "tokenizers": "0.22.2"
+  },
+  "_provenance": {
+    "cell": 81,
+    "source_sha256": "58a87d4b30c5817ab2d5b5f39f0ff44fee013853ef59413193c8bc2c4aa807e3",
+    "kind": "historical saved output"
   }
 }

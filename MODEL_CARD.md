@@ -185,3 +185,12 @@ Planned evidence: `reports/extension_batch_endpoint.json`.
 ## Reproduction
 
 Run notebooks 00→08 from `notebooks/` in Google Colab, using the day-specific requirements files, then run the course validators described in `README.md`.
+
+
+## Correction status — supersedes completion claims for the new pipeline
+
+Sentiment is a separate Transformer head with its own sorted label mapping and TF-IDF baseline in corrected notebook 03. Its Macro-F1 is **not measured yet** (`reports/observed_sentiment.json` is explicitly UNMEASURED). Topic 0.8667 is historical and must not be reused as sentiment quality or as a result of the new preprocessing pipeline.
+
+Corrected topic and sentiment training share protected NFC preprocessing. Epoch selection uses validation only on GPU and CPU. The selected topic checkpoint/tokenizer and validation CSV are saved in private Drive for notebook 08. No weights are committed here. Project benchmark, candidate quality taxes, startup FP32 canary comparisons and batch-extension quality remain awaiting actual execution.
+
+Sentiment split audit: train negative/positive/neutral = 10/8/6; validation negative/neutral = 2/6 (no positive); test positive/negative = 2/6 (no neutral). Preserve the supplied grouped split, report fixed-contract Macro-F1 and support, and do not claim representative three-class performance.
