@@ -4,88 +4,70 @@
 
 ## 1. Problem and user | المشكلة والمستخدم
 
-Bayan is an educational Applied NLP project for Arabic and English text.
+Bayan is an educational bilingual NLP project for Arabic and English feedback.
 
-- **User:** student/trainer evaluating the Bayan NLP workflow.
-- **Input:** Arabic or English text, depending on the task.
-- **Scope:** text preprocessing, classification, NER, extractive QA, semantic search, evaluation, and optimisation.
-- **Non-goals:** production deployment, high-impact decision making, or processing sensitive personal data without additional safeguards.
+- User: student/trainer reviewing an NLP workflow.
+- Input: Arabic or English educational text.
+- Scope: privacy-aware preprocessing, topic/sentiment, NER, QA, semantic search, evaluation and serving.
+- Non-goal: production or high-impact use without additional validation.
 
 ## 2. Architecture | المعمارية
 
-Architecture reference: `README.md`
+See `README.md`.
 
-Main data flow:
+`AR/EN text → display/raw copy + PII masking → versioned preprocessing → tokenizer/embeddings → Transformer encoder → topic/sentiment/NER/QA heads`
 
-`Raw text → protected preprocessing → tokenisation/embeddings → task model → evaluation → evidence/report`
+Search path:
 
-For semantic search:
+`preprocessed query → multilingual sentence embedding → L2 → FAISS → cross-encoder re-ranking → unified evidence`
 
-`Query → Arabic/English preprocessing → multilingual embedding → L2 normalisation → FAISS retrieval → cross-encoder re-ranking → threshold/no-answer decision`
-
-Main evidence files:
-- `README.md`
-- `MODEL_CARD.md`
-- `DATA_CARD.md`
-- `EVALUATION_REPORT.md`
-- `BENCHMARKS.md`
-- `DECISIONS.md`
+Attention maps are descriptive and are not treated as causal explanations.
 
 ## 3. Demonstration | التطبيق
 
-- **Arabic example + output evidence:**  
-  QA example extracted the answer `الرياض`.  
-  Evidence: `reports/observed_ner_qa.json`
+Preserved examples:
+- QA valid span: answer `الرياض` — `reports/observed_ner_qa.json`
+- QA no-answer: `no_answer_in_context` — `reports/observed_ner_qa.json`
+- Arabic profile: 4/4 golden cases — `reports/observed_arabic_profile.json`
+- Search manifest: 24 vectors, 384 dimensions, L2 + IndexFlatIP — `reports/observed_search_manifest.json`
 
-- **English example + output evidence:**  
-  English requests were successfully handled in the tested service workflow.  
-  Evidence: `BENCHMARKS.md` — English inference `200` and English canary `PASS`
-
-- **No-answer / invalid-input case:**  
-  QA no-answer handling returned `no_answer_in_context`, and invalid service input was rejected with HTTP `422`.  
-  Evidence: `reports/observed_ner_qa.json` and `BENCHMARKS.md`
-
-- **Saved fallback from the same submission, if available:**  
-  Saved notebook outputs and JSON evidence are stored under `reports/`.
+Corrected-run demonstrations to show after Run All:
+- separate sentiment prediction + Macro-F1 evidence;
+- PROJECT_ARTIFACT service response;
+- batch endpoint extension.
 
 ## 4. Measured evidence | الدليل المقاس
 
-- **Quality metric, data split and report:**  
-  Classification test Macro-F1 = **0.8667**  
-  Transformer test accuracy = **0.875**  
-  NER F1 = **0.5714**  
-  Semantic Search Recall@3 = **1.0000**  
-  Re-ranked MRR@3 = **0.7222**  
-  Evidence: `EVALUATION_REPORT.md`, `PROJECT_SUMMARY.json`
+Preserved evidence:
+- Topic test Macro-F1: **0.8667**
+- Topic test accuracy: **0.8750**
+- NER strict F1: **0.5714**
+- Search Recall@3: **1.0000**
+- Core re-ranking MRR@3: **0.6667 → 0.7222**
+- Behavioural course-fixture pass rate: **3/6**
 
-- **Performance metric, environment and report:**  
-  ONNX FP32 p95 latency = **9.541 ms**  
-  Dynamic INT8 p95 latency = **7.922 ms**  
-  INT8 prediction agreement = **1.0000**  
-  Environment: CPU  
-  Evidence: `BENCHMARKS.md`
+Slice/error evidence:
+- `reports/day3_slice_report.csv`
+- `reports/day3_error_taxonomy.csv`
+- `reports/day3_evaluation_fixture.json`
 
-- **Measurement label and limits:**  
-  `MEASURED_SMOKE` / course-fixture results.  
-  These results come from small educational datasets and should not be interpreted as production-quality benchmarks.
+Day 4 final project metrics are not presented until the PROJECT_ARTIFACT rerun is complete.
 
 ## 5. Decision and ownership | القرار والمساهمة
 
-- **My change / measured extension and file:**  
-  Measured cross-encoder re-ranking extension for bilingual semantic search.  
-  Evidence: `reports/observed_reranking_display.json` and `DECISIONS.md`
+### My concrete contribution
+I implemented and ran the combined student workflow, including preprocessing/token metrics, attention checks, grouped topic fine-tuning, NER/QA, Arabic profiles, semantic retrieval and evaluation/error analysis. The corrected official notebooks are reorganised from that work.
 
-- **Baseline, benefit/cost and limitation:**  
-  Baseline MRR@3 = **0.6667**  
-  Re-ranked MRR@3 = **0.7222**  
-  Improvement = **+0.0556**  
-  Decision = `ADOPT_FOR_EXPERIMENT`  
-  Cost: additional re-ranking latency on CPU  
-  Limitation: only 6 answerable test queries and a small course dataset
+### Required extension
+Chosen extension: **batch endpoint**.
 
-- **One code decision I can explain:**  
-  I used L2-normalised multilingual sentence embeddings with FAISS `IndexFlatIP`, and selected the no-answer threshold using validation data only to reduce leakage.
+Why:
+- cross-encoder re-ranking is already part of the core search requirement;
+- batch inference is an allowed measured extension.
 
-The talk is five minutes plus two minutes of individual verification; up to five slides or equivalent. Presentation credit is 10 within the total of 100. Optional slides may be linked here; no paid tool is required.
+Corrected Notebook 08 will compare sequential calls with a true batch model call, verify prediction agreement, measure throughput/latency trade-off and write `reports/extension_batch_endpoint.json`.
 
-العرض خمس دقائق ودقيقتان للتحقق الفردي، بخمس شرائح كحد أقصى أو ما يعادلها. درجة العرض 10 ضمن المجموع 100. يمكن ربط شرائح اختيارية هنا؛ لا تحتاج أداة مدفوعة.
+### Code decision I can explain
+For semantic search I use L2-normalised multilingual embeddings with FAISS `IndexFlatIP`, and I tune the no-answer threshold on validation data only to avoid test leakage.
+
+The talk is five minutes plus two minutes of individual verification; up to five slides or equivalent.
