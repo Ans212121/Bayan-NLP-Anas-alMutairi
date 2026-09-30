@@ -1,46 +1,49 @@
 # STUDENT PROFILE | ملف المتدرب
 
-استخدم المعلومات اللازمة للتقييم فقط. لا تضف رقم هوية أو هاتفًا أو عنوانًا أو token أو بيانات حساسة.
-
 - Display name | الاسم للعرض: Anas Ibrahim Al-Mutairi
 - GitHub username: Ans212121
 - Public repository: https://github.com/Ans212121/Bayan-NLP-Anas-alMutairi
-- Learning lane completed: Core
+- Learning lane completed: Core correction cycle in progress
 - Starting level (self-described): beginner
 
 ## My contribution | مساهمتي
 
-This is an individual project. I completed and organised the Bayan Applied NLP workflow across the course notebooks and project documentation.
+This is an individual educational project. My actual Colab work implemented the preprocessing/tokenisation, attention experiments, grouped topic classification, NER, extractive QA, Arabic profiles, multilingual semantic search and evaluation/error-analysis workflow.
 
-My work includes text preprocessing and Arabic handling, tokenisation, attention and Transformers, text classification, sentiment classification, Named Entity Recognition (NER), extractive Question Answering (QA), bilingual semantic search, evaluation and error analysis, and inference optimisation.
+Concrete examples of my work include:
+- Day 1 preprocessing/token metrics: mean fertility **1.36**, 0% truncation on the length-10 lab sample and PII masking checks.
+- Topic classification: grouped 24/8/8 split with zero group overlap and Transformer test Macro-F1 **0.8667**.
+- Arabic profile: `search/1.0.0` with CAMeL Tools and **4/4** golden cases passing.
+- Search/evaluation: L2 + FAISS retrieval, validation-only thresholding, slice confidence intervals and an eight-example manual error taxonomy.
 
-I also organised the project evidence, reports, model and data documentation, benchmarks, decisions, and GitHub repository structure.
+For the correction cycle I reorganised my actual work into the required nine notebook paths. I also added a separate sentiment head and prepared a PROJECT_ARTIFACT Day 4 rerun plus a measured batch-endpoint extension. I will only claim their new metrics after I run and inspect them in Colab.
 
-I learned how to prepare Arabic and English text safely, prevent data leakage using grouped splits, evaluate NLP models with appropriate metrics, build multilingual semantic search with embeddings and FAISS, apply cross-encoder re-ranking, and document limitations and evidence.
+## AI/tool assistance disclosure | الإفصاح عن المساعدة
 
-I used course materials, open-source Python libraries, Hugging Face models, and AI-assisted guidance during development and documentation. I reviewed the generated suggestions and used them as support for my own project work.
+I used **ChatGPT by OpenAI** to help interpret the assessment feedback, reorganise my existing project code/documentation, check repository paths, and suggest/debug the correction code for the sentiment head, project benchmark configuration and batch endpoint.
+
+I verify the assistance by reading the code, running the notebooks myself, checking saved outputs/Core markers, running the course tests and validators, and comparing every documented number with a generated evidence file. The final submitted results are not accepted merely because an AI tool suggested them.
 
 ## One skill I can now demonstrate
 
-I can build and evaluate a bilingual semantic-search pipeline using multilingual sentence embeddings, L2 normalisation, FAISS retrieval, and cross-encoder re-ranking.
+I can build and evaluate a bilingual semantic-search pipeline using multilingual sentence embeddings, L2 normalisation, FAISS `IndexFlatIP`, validation-only thresholding and core cross-encoder re-ranking.
 
 Evidence:
 - `notebooks/06_semantic_search.ipynb`
+- `reports/observed_search_manifest.json`
 - `reports/observed_reranking_display.json`
 - `EVALUATION_REPORT.md`
 
 ## One limitation I understand
 
-I understand that strong results on a small educational dataset do not prove production readiness or generalisation to real-world data.
-
-Small datasets, limited dialect coverage, class imbalance, ambiguous examples, and runtime differences can affect model performance. Any real-world deployment would require larger representative datasets, additional evaluation, privacy safeguards, and human review.
+Strong scores on small educational datasets do not prove production readiness or broad generalisation. Small slices, limited dialect coverage, ambiguous labels and runtime variability can materially change the results. Real-world use would require larger representative data, privacy/security review, independent evaluation and human oversight.
 
 ## Integrity declaration | إقرار النزاهة
 
-- [x ] أفهم كل كود وقرار أسلمه ويمكنني شرحه.
-- [x ] نسبت المصادر والمكتبات والنماذج والبيانات إلى أصحابها.
-- [ x] لم أستخدم بيانات شخصية أو أسرارًا.
-- [x ] لم أغيّر test labels أو validator للحصول على PASS.
+- [x] أفهم كل كود وقرار أسلمه ويمكنني شرحه.
+- [x] نسبت المصادر والمكتبات والنماذج والبيانات إلى أصحابها.
+- [x] لم أستخدم بيانات شخصية أو أسرارًا.
+- [x] لم أغيّر test labels أو validator للحصول على PASS.
 
 Signature/display name: Anas Ibrahim Al-Mutairi  
-Date: 2026-09-29
+Correction date: 2026-09-30
