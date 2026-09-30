@@ -1,14 +1,34 @@
 {
   "student_github": "Ans212121",
   "repository_url": "https://github.com/Ans212121/Bayan-NLP-Anas-alMutairi",
-  "languages": ["ar", "en"],
-  "tasks": ["classification", "sentiment", "ner", "qa", "semantic_search"],
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "tasks": [
+    "classification",
+    "sentiment",
+    "ner",
+    "qa",
+    "semantic_search"
+  ],
   "extension": {
     "name": "batch endpoint",
-    "evidence": "reports/extension_batch_endpoint.json"
+    "evidence": "reports/extension_batch_endpoint.json",
+    "status": "UNMEASURED"
   },
   "benchmark_mode": "SYSTEMS_SMOKE",
-  "final_tag": "submission-v1.0",
+  "final_tag": null,
   "privacy_check": true,
-  "tests_passed": false
+  "tests_passed": true,
+  "correction_status": "AWAITING_COLAB_RUNS",
+  "previous_assessed_tag": "submission-v1.0",
+  "task_status": {
+    "classification": "HISTORICAL_MEASURED_SMOKE_NEW_PIPELINE_REQUIRES_RUN",
+    "sentiment": "UNMEASURED",
+    "ner": "HISTORICAL_MEASURED_SMOKE",
+    "qa": "HISTORICAL_COURSE_FIXTURE",
+    "semantic_search": "HISTORICAL_MEASURED_SMOKE"
+  },
+  "test_scope": "81 local code/contract tests; NOT Colab ML execution"
 }

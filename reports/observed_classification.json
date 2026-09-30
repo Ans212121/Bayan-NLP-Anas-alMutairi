@@ -1,19 +1,29 @@
 {
   "result_type": "MEASURED_SMOKE",
-  "source_notebook": "bayan_NLP_ANAS_AI_Mutairi (2).ipynb",
+  "data_source": "github_course_file",
   "model_id": "distilbert/distilbert-base-multilingual-cased",
-  "split": {
-    "train_rows": 24,
-    "validation_rows": 8,
-    "test_rows": 8,
-    "group_overlap": 0
-  },
+  "device": "cpu",
+  "training_mode": "partial_finetune_cpu",
+  "seed": 42,
+  "epochs_run": 12,
   "selected_epoch": 9,
+  "train_steps": 72,
+  "mean_train_loss": 0.6407361574496867,
   "baseline_validation_macro_f1": 0.6666666666666666,
   "transformer_validation_macro_f1": 1.0,
-  "validation_delta": 0.33333333333333337,
-  "baseline_test_macro_f1": 0.7333333333333334,
+  "validation_delta_vs_baseline": 0.33333333333333337,
+  "baseline_beaten_on_validation": true,
+  "baseline_test_macro_f1": 0.7333333333333333,
   "transformer_test_macro_f1": 0.8666666666666667,
   "transformer_test_accuracy": 0.875,
-  "core_marker": "DAY2_NOTEBOOK3_CORE=PASS"
+  "limitations": [
+    "synthetic tiny dataset",
+    "small validation set used for epoch selection",
+    "not an estimate of production quality"
+  ],
+  "_provenance": {
+    "cell": 38,
+    "source_sha256": "58a87d4b30c5817ab2d5b5f39f0ff44fee013853ef59413193c8bc2c4aa807e3",
+    "kind": "historical saved output"
+  }
 }

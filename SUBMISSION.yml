@@ -2,6 +2,8 @@ course: bayan-applied-nlp
 student_github: Ans212121
 repository: https://github.com/Ans212121/Bayan-NLP-Anas-alMutairi
 default_branch: main
-final_tag: submission-v1.0
+final_tag: null
+previous_assessed_tag: submission-v1.0
+correction_status: awaiting_colab_runs
 runtime: google-colab
 visibility: public

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "scope": "Local code tests and notebook format/syntax only, not ML execution or submission acceptance",
+  "tests": 81,
+  "pytest_version": "9.1.1",
+  "notebook_schema_valid": 9,
+  "all_code_cells_parse": true,
+  "batch_test_runtime": "fake deterministic runtime, no measured model quality/latency",
+  "full_colab_execution": false,
+  "warning": "FastAPI/Starlette httpx deprecation in local test dependencies"
+}

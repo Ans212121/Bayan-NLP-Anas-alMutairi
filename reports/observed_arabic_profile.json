@@ -13,26 +13,11 @@
     "preserve_teh_marbuta"
   ],
   "golden_cases_passed": 4,
-  "golden_cases_total": 4,
   "fixture_rows": 20,
   "variant_counts_are_predictions": false,
-  "model_comparison": [
-    {
-      "model_id": "distilbert/distilbert-base-multilingual-cased",
-      "optimizer_steps": 40,
-      "validation_n": 4,
-      "frozen_gulf_test_n": 4,
-      "gulf_test_macro_f1": 0.0,
-      "result_type": "MEASURED_SMOKE"
-    },
-    {
-      "model_id": "CAMeL-Lab/bert-base-arabic-camelbert-da",
-      "optimizer_steps": 40,
-      "validation_n": 4,
-      "frozen_gulf_test_n": 4,
-      "gulf_test_macro_f1": 0.6667,
-      "result_type": "MEASURED_SMOKE"
-    }
-  ],
-  "core_marker": "DAY3_NOTEBOOK5_CORE=PASS"
+  "_provenance": {
+    "cell": 67,
+    "source_sha256": "58a87d4b30c5817ab2d5b5f39f0ff44fee013853ef59413193c8bc2c4aa807e3",
+    "kind": "historical saved output"
+  }
 }
