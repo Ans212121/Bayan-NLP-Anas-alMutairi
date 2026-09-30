@@ -20,3 +20,7 @@ This correction preserves existing history. No backdated or artificial gate-comp
 ## Final version
 
 Corrected final commit/tag: not selected. Existing tags remain untouched. Before a final tag, record the actual full candidate commit, inspect preflight and have the student personally confirm the final acknowledgement. A later correction does not automatically replace the assessed SHA under the course policy.
+
+## Actual correction snapshot
+
+Correction implementation and recovered evidence: `5518ea56f4ca14480e4aa26484720ad5de764ec7` ([commit](https://github.com/Ans212121/Bayan-NLP-Anas-alMutairi/commit/5518ea56f4ca14480e4aa26484720ad5de764ec7)). This is a code/evidence recovery commit, not a Colab runtime commit or final release. Local verification: 81 code/contract tests and 9 notebook schemas passed; see `reports/code_validation.json`. ML reruns and measured gate closure remain pending.
