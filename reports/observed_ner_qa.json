@@ -1,0 +1,24 @@
+{
+  "result_type": "MEASURED_SMOKE",
+  "source_notebook": "bayan_NLP_ANAS_AI_Mutairi (2).ipynb",
+  "ner": {
+    "precision": 0.6666666666666666,
+    "recall": 0.5,
+    "f1": 0.5714285714285715,
+    "true_entities": 4,
+    "predicted_entities": 3
+  },
+  "qa": {
+    "optimizer_steps": 3,
+    "training_loss": 3.645052,
+    "span_example_answer": "الرياض",
+    "no_answer_reason": "no_answer_in_context"
+  },
+  "checks": [
+    "NER alignment contract=PASS",
+    "Strict entity-boundary test=PASS",
+    "QA offsets-to-token positions=PASS",
+    "QA post-processing tests=PASS",
+    "DAY2_NOTEBOOK4_CORE=PASS"
+  ]
+}
